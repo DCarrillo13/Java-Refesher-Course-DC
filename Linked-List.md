@@ -8,7 +8,7 @@ Before we move on to the logical design of a linked list and the operations it m
 	- The first, and arguably most important piece, is a variable to hold the **_data_** itself. In many languages, we leverage the power of generics to ensure that this LinkedList can store objects of any type that we specify. 
 	- The `next` class variable that Node will store will typically be of type Node and will actually contain the next node object in the list (or at least a reference to it). We call this variable **_next_** to denote that it is the *next* node. 
 
-Lets take a look at how this concept may look in Java: ~~, but keep in mind, this class design is relatively portable and can be quite easily converted to your language of choice.~~
+Lets take a look at how this concept may look in Java: 
 
 ![](https://github.com/bpinkerton/java-primer-notes/raw/main/images/node.png)
 
@@ -17,8 +17,6 @@ Now that we have a better understanding of the Node subclass, lets start to logi
 ![](https://github.com/bpinkerton/java-primer-notes/raw/main/images/linked-list.png)
 
 In this diagram, Node A is referred to as our **_head_** node and is the first node in the list. Every time we wish to iterate through our list from start to finish, the head node will always be our starting point. Once we have our head node object, we can check the data contained within the '***data***' variable, and continue moving onward simply by grabbing the *next* Node (Node B) which is stored in the variable '**next**'. We can continue this same series of steps up until the point where we realize that the '*next*' variable is actually pointing to **null**, not another valid node object. At this point, we have reached the end of our list.
-
-~~One thing to note is that in many implementations of the Linked List class, you will store two nodes of importance. One of which, the head node, we have already discussed, but there is also value in storing a reference to the **_tail_** node, or the last valid node in the list. We'll uncover the usage of the tail node in the next section when we begin to talk about supported operations.~~
 
 In the above introduction, we have discussed one of the two important nodes of a linked list, the '**Head**' node. In the next section, we will be discussing supported operations and introducing the other important node: the '**Tail**' node, the last valid node in the list.
 
