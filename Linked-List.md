@@ -65,7 +65,7 @@ After we assign Node D's `next` variable to `null`, we still don't have a way to
 Inserting to the front of the list is just as simple as our previous example. 
 
 We start with creating a new Node object. 
-![[NewHeadNode 1.png]]
+![[NewHeadNode.png]]
 Then, instead of pointing to `null`, we must point the new node to the current '***head***', Node A.
 Afterwards, we must update the '***head***' variable to point to our *newly* created node as the new first element in the list.
 ![[NewHeadNode2.png]]
