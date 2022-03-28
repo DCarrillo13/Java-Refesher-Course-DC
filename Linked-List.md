@@ -65,10 +65,10 @@ After we assign Node D's `next` variable to `null`, we still don't have a way to
 Inserting to the front of the list is just as simple as our previous example. 
 
 We start with creating a new Node object. 
-![[Pasted image 20220328132353.png]]
+![](NewHeadNode.png)
 Then, instead of pointing to `null`, we must point the new node to the current '***head***', Node A.
 Afterwards, we must update the '***head***' variable to point to our *newly* created node as the new first element in the list.
-![[Pasted image 20220328132414.png]]
+![](NewHeadNode2.png)
 
 #### Inserting in an Ordered Linked List
 
@@ -76,21 +76,21 @@ An ordered linked list is a little more complicated, because the list is sorted.
 
 Below we list the steps in ording our Linked Lists from smallest to largest:
 1. Create our new Node object to hold our data
-![[Pasted image 20220328132442.png]]
+![](OrderedNodeInsert.png)
 2. Begin our traversal by comparing our new node to the current 'head' node:
-![[Pasted image 20220328132500.png]]
+![](OrderedNodeInsert2.png)
 	- If our new node is **smaller** than the head node, our new node should *become first* in the list. Follow process for [[#Inserting to the Front of an Unordered Linked List]] 
 	- If our new node is **larger** than the head node, we need to *continue* our traversal by grabbing the next node and repeating the comparison until we either find a condition where our new node is ***smaller***, **or** we reach the ***end of the list***.
-![[Pasted image 20220328132516.png]]
+![](OrderedNodeInsert3.png)
 		- If we reach the end of the list (where `next` points to `null`), then follow steps from: [[#Inserting to the End of an Unordered Linked List]].
 		- If we find a loction in the list that isn't either at the end nor the front of our Linked List, move on to step 3. 
 3. In order to insert in the **middle** of the list, a few things must occur to keep everything linked. 
    Lets assume we are inserting a new node, Node D, between Node B, and Node C:
-![[Pasted image 20220328132543.png]]
+![](OrderedNodeInsert4.png)
 	- Node D will be before Node C, so we must point the `next` variable on Node D to point to Node C.
-![[Pasted image 20220328132558.png]]
+![](OrderedNodeInsert5.png)
 	- Node D will be after Node B, so we must point the 'next' variable on Node B to point to Node D.
-![[Pasted image 20220328132614.png]]
+![](OrderedNodeInsert6.png)
 In theory, this insertion operation can seem relatively straightforward, but as we'll see in our later code examples, there are several things to consider to accomplish this implementation.
 
 ### Retrieval
