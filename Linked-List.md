@@ -47,7 +47,9 @@ The Insertion operation is the act of adding a new element to the list. We can i
 In an *unordered* linked list (**not sorted**), adding to the end of the list is as simple as creating a new Node object to contain the data, setting its `next` variable to point to null, and updating the **current** *tail* node to point to our **new** *tail* node. Here are diagrams of the operation:
 
 Below we created our new node (Node D), yet to be inserted into our Link List. 
-![[Pasted image 20220324104602.png]]
+![insertion-1.png](https://github.com/bpinkerton/java-primer-notes/blob/main/images/insertion-1.png?raw=true)
+![](https://github.com/bpinkerton/java-primer-notes/blob/main/images/insertion-1.png)
+
 In the diagram above, we can see that a new Node object has been created, but it is currently floating in space and is not linked to our list.
 
 Second, since we are inserting our new node to the end of our Link List, we must make its `next` value point to `null`. This will signify that there is no other node after Node D.
