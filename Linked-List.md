@@ -80,7 +80,7 @@ Below we list the steps in ording our Linked Lists from smallest to largest:
 1. Create our new Node object to hold our data
 ![](./Images-and-Diagrams/OrderedNodeInsert.png)
 2. Begin our traversal by comparing our new node to the current 'head' node:
-![](./Images-and-Diagrams/rderedNodeInsert2.png)
+![](./Images-and-Diagrams/OrderedNodeInsert2.png)
 	- If our new node is **smaller** than the head node, our new node should *become first* in the list. Follow process for [[#Inserting to the Front of an Unordered Linked List]] 
 	- If our new node is **larger** than the head node, we need to *continue* our traversal by grabbing the next node and repeating the comparison until we either find a condition where our new node is ***smaller***, **or** we reach the ***end of the list***.
 ![](./Images-and-Diagrams/OrderedNodeInsert3.png)
