@@ -97,6 +97,66 @@ In theory, this insertion operation can seem relatively straightforward, but as 
 
 ### Retrieval
 
+When discussing the retrieval of data from a linked list, we typically still refer to elements by their index, despite there not being true a index relationship to the elements like there would be with an array or an ArrayList. However, we can still consider an element's location in the list as their index, starting from 0. Therefore, our head Node would be at index 0, and our tail Node would be at an index equal to the length of the list minus one (to account for the list being indexed at 0).
+
+In order to physically retrieve the data, we must iterate through the list n spaces, where n is the desired index. Once we reach the desired index, it is as simple as returning the data contained within the node at that location. The name for the actual retrieval function is typically called 'get' and in many languages and implementations, can be overloaded to accept different types of parameters instead of just the index.
+
+Lets look at how this retrieval may look in a diagram and then we will follow it up with an implementation in code.
+
+Assume that we have the same four node list from earlier as seen below:
+
+[![](https://github.com/bpinkerton/java-primer-notes/raw/main/images/insertion-3.png)](https://github.com/bpinkerton/java-primer-notes/blob/main/images/insertion-3.png)
+
+Since our primary retrieval will be index based, we should now consider the indices for the list, remembering to start from 0.
+
+[![](https://github.com/bpinkerton/java-primer-notes/raw/main/images/indices.png)](https://github.com/bpinkerton/java-primer-notes/blob/main/images/indices.png)
+
+As we can see from the diagram above, our four node list has the following indices that we can retrieve: 0, 1, 2 and 3. If the 'get' method was called with a provided parameter of 2, the retrieval would be as follows.
+
+-   Begin with the starting node of the list (head), which is at index 0 and contains a reference for the 'next' node.
+-   Initialize a loop to iterate n number of times (n being 2 in this case)
+-   In the body of the loop, all we need to do is progress the pointer with each iteration. We do this by re-assigning our current node (which at the beginning of the loop is head) with the value of the 'next' node.
+-   If our loop is set to iterate two times, we will call 'next' two times, and thus end on the third item in the list at index 2.
+-   Once we are at the desired location, we return the data value stored within the node.
+
+Here's how this operation might look in Java code:
+
+[![](https://github.com/bpinkerton/java-primer-notes/raw/main/images/retrieval.png)](https://github.com/bpinkerton/java-primer-notes/blob/main/images/retrieval.png)
+
+The above implementation is fairly basic and is not protected against any user error if the method were to be called with an index that is outside of the range of our list. For instance, if our list only had four elements, if the method was called with any value higher than 3, we would end up with a NullPointerException as our loop continued and tried to call either 'next' or 'data' on a null value.
+
+Similarly, if the method is called with a negative value, our loop would never iterate to begin with, thus leading us to return the value of the head node. In the second case, we wouldn't get an explicit exception to let us know something is wrong, instead we would just have undesired functionality. For these reasons, we would likely want to have a check against the provided index before the loop iterates just to make sure that it falls within the bounds of the list.
+
 ### Deletion
+
+Deletion operations for a linked list will combine many of the ideas from the insertion and retrieval sections. For instance, just like with retrieval, we will need to iterate to find the desired element by either it's index, or in a different case, it's actual data value. Once we locate the desired node we essentially will complete the same steps as insertion, just in reverse. This idea can be adjusted based on if you're deleting from the front, middle, or end of the list.
+
+#### Deletion of Tail Node
+
+Let's begin by taking a look at a diagram depicting a deletion operation from the end of the list as we showcase similar steps to insertion in reverse. As a reminder, here were our steps for inserting at the end of the list:
+
+-   Create a new Node to house our data
+-   Point our new node's 'next' to null to signify that it is at the end of the list
+-   Point our previous tail's 'next' to our new node
+-   Change our tail variable to hold the new node
+
+[![](https://github.com/bpinkerton/java-primer-notes/raw/main/images/deletion-0.png)](https://github.com/bpinkerton/java-primer-notes/blob/main/images/deletion-0.png)
+
+Firstly, we need to undo the last step in the steps above by updating our tail. We do this by changing the tail variable to hold the node that comes just before the last node. This can be a bit tricky to do in a singly linked list (a list that is only linked in one direction) as we will need to traverse until we find a node who's 'next' is equal to our tail node and then change the tail to hold the value of this node instead. In a doubly linked list (a list that is linked in two directions) it would be much easier as in addition to a 'next', every node would also have a 'previous'. [![](https://github.com/bpinkerton/java-primer-notes/raw/main/images/deletion-1.png)](https://github.com/bpinkerton/java-primer-notes/blob/main/images/deletion-1.png)
+
+Next, we know that our new tail is not really the tail at all, since it's 'next' still points to our previous tail and thus does not signify the end of the list. In order to undo this, we can simply bypass the previous tail by pointing our new tail's 'next' to null.
+
+[![](https://github.com/bpinkerton/java-primer-notes/raw/main/images/deletion-2.png)](https://github.com/bpinkerton/java-primer-notes/blob/main/images/deletion-2.png)
+
+You might be wondering how we go about undoing the next step, where we created the node to begin with. The truth is, we don't need to formally 'delete' anything in most cases. When we changed the new tail to point to null instead of the old tail, we 'dereferenced' the old tail node. Dereferencing is a fancy way of saying that there is no longer any reference to the object in memory. When this happens in Java and some other languages, the object will be automatically deleted if there are no other references to it in the program. This is a process known as Garbage Collection and is a big selling point for Java as a language.
+
+Once our method finishes executing, our dereferenced object will be garbage collected, removing it from memory altogether, and we will have fully completed our deletion operation.
+
+Here's a look at how deleting from the end of a linked list might be implemented in Java code.
+
+[![](https://github.com/bpinkerton/java-primer-notes/raw/main/images/tail-deletion-example.png)](https://github.com/bpinkerton/java-primer-notes/blob/main/images/tail-deletion-example.png)
+#### Deletion by Index
+
+#### Deletion by Value
 
 ## Examples
